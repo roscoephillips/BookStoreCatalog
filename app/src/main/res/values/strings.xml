@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BookStoreCatalog</string>
+    <string name="bookstore_editor_activity">Add to Bookstore</string>
+    <string name="product_details_header">Product Details</string>
+    <string name="name_category">Name</string>
+    <string name="price_category">Price</string>
+    <string name="quantity_category">Quantity</string>
+    <string name="product_name_input">Product Name</string>
+    <string name="price_symbol">$</string>
+
+</resources>

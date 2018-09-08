@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?><!--Background source image: https://www.maxpixel.net/Antique-Old-Texture-Paper-Parchment-Background-1074131-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/parchment_texture"
+    android:padding="16dp"
+    tools:context=".BookEditor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/HeaderStyle"
+            android:text="@string/product_details_header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_sml">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/CategoryNames"
+                    android:text="@string/name_category" />
+
+                <TextView
+                    style="@style/CategoryNames"
+                    android:text="@string/price_category" />
+
+                <TextView
+                    style="@style/CategoryNames"
+                    android:text="@string/quantity_category" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.3"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edit_product_name"
+                    style="@style/CategoryInput"
+                    android:hint="@string/product_name_input" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price_symbol"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/edit_price"
+                        style="@style/CategoryInput"
+                        android:hint="Price"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edit_quantity"
+                    style="@style/CategoryInput"
+                    android:hint="Quantity"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/HeaderStyle"
+            android:text="Supplier Details" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_sml">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/CategoryNames"
+                    android:text="Name" />
+
+                <TextView
+                    style="@style/CategoryNames"
+                    android:text="Phone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.3"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edit_supplier_name"
+                    style="@style/CategoryInput"
+                    android:hint="Supplier Name" />
+
+                <EditText
+                    android:id="@+id/edit_supplier_phone"
+                    style="@style/CategoryInput"
+                    android:digits="0123456789+"
+                    android:hint="Phone Number"
+                    android:inputType="phone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/add_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/spacing_med"
+        android:src="@drawable/add_item" />
+
+</RelativeLayout>
