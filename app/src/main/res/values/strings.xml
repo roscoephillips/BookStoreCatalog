@@ -7,5 +7,22 @@
     <string name="quantity_category">Quantity</string>
     <string name="product_name_input">Product Name</string>
     <string name="price_symbol">$</string>
+    <string name="string_empty_bookshelf">The bookstore\'s shelves are empty.</string>
+    <string name="sale_text">SALE</string>
+    <string name="add_some_items_please">Add some items, please!</string>
+    <string name="add_a_new_product">New Product Add</string>
+    <string name="edit_an_existing_product">Edit Existing Product</string>
+    <string name="save_action">Save</string>
+    <string name="delete_action_text">Delete</string>
+    <string name="editor_unsuccessful_insertion">Uh-oh!  Something went wrong.  Product not saved.</string>
+    <string name="editor_successful_insertion">Success!  Product saved.</string>
 
+    <string name="unsaved_changes_prompt">Are you sure you want to discard your changes?</string>
+    <string name="discard_yes">Yes</string>
+    <string name="discard_no">No</string>
+    <string name="delete_record_prompt">Do you wish to delete this record?</string>
+    <string name="delete_record_confirm">Yes, delete.</string>
+    <string name="delete_no">No</string>
+    <string name="record_deleted_successfully">Record deleted successfully.</string>
+    <string name="unsuccessful_deletion">Record was unable to be deleted.</string>
 </resources>

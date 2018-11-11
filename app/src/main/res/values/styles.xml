@@ -33,4 +33,20 @@
         <item name="android:layout_marginTop">@dimen/spacing_med</item>
     </style>
 
+    <style name="list_item_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/spacing_sml</item>
+        <item name="android:paddingBottom">@dimen/spacing_sml</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="list_item_quantity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/spacing_sml</item>
+        <item name="android:paddingBottom">@dimen/spacing_sml</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+    </style>
+
 </resources>

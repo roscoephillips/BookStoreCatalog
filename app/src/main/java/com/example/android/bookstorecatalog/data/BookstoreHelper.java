@@ -25,9 +25,9 @@ public class BookstoreHelper extends SQLiteOpenHelper {
                         + BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_NAME
                         + " TEXT NOT NULL, "
                         + BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_PRICE
-                        + " REAL NOT NULL DEFAULT 0, "
+                        + " REAL NOT NULL, "
                         + BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_QUANTITY
-                        + " INTEGER NOT NULL DEFAULT 0, "
+                        + " INTEGER NOT NULL DEFAULT 1, "
                         + BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_NAME
                         + " TEXT NOT NULL, "
                         + BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_PHONE_NUMBER
