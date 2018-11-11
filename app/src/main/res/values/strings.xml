@@ -25,4 +25,5 @@
     <string name="delete_no">No</string>
     <string name="record_deleted_successfully">Record deleted successfully.</string>
     <string name="unsuccessful_deletion">Record was unable to be deleted.</string>
+    <string name="product_entry_not_saved">Product entry did not save.  Please update all blank or invalid fields.</string>
 </resources>

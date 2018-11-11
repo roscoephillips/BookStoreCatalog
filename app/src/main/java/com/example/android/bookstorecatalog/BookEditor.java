@@ -82,13 +82,13 @@ public class BookEditor extends AppCompatActivity implements
         //has been touched or modified, the corresponding field will alert the user
         //about any unsaved changes.
 
-        mProductNameEdit = (EditText) findViewById(R.id.edit_product_name);
+        mProductNameEdit = findViewById(R.id.edit_product_name);
         mProductNameEdit.setOnTouchListener(mOnTouchListener);
 
-        mPriceEdit = (EditText) findViewById(R.id.edit_price);
+        mPriceEdit = findViewById(R.id.edit_price);
         mPriceEdit.setOnTouchListener(mOnTouchListener);
 
-        mQuantityEdit = (EditText) findViewById(R.id.edit_quantity);
+        mQuantityEdit = findViewById(R.id.edit_quantity);
         mQuantityEdit.setOnTouchListener(mOnTouchListener);
 
         mIncreaseQuantity = findViewById(R.id.quantity_increase);
@@ -113,10 +113,10 @@ public class BookEditor extends AppCompatActivity implements
             }
         });
 
-        mSupplierNameEdit = (EditText) findViewById(R.id.edit_supplier_name);
+        mSupplierNameEdit = findViewById(R.id.edit_supplier_name);
         mSupplierNameEdit.setOnTouchListener(mOnTouchListener);
 
-        mSupplierPhoneEdit = (EditText) findViewById(R.id.edit_supplier_phone);
+        mSupplierPhoneEdit = findViewById(R.id.edit_supplier_phone);
         mSupplierPhoneEdit.setOnTouchListener(mOnTouchListener);
         mContactSupplier = findViewById(R.id.contact_supplier_button);
 
@@ -151,49 +151,60 @@ public class BookEditor extends AppCompatActivity implements
             return;
         }
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_NAME,
-                productNameString);
-        //Price will default as 0.25.
-        Double price = 0.25;
-        if (!TextUtils.isEmpty(priceString)) {
-            price = Double.parseDouble(priceString);
-        }
-        contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_PRICE,
-                price);
-        int quantity = 0;
-        if (!TextUtils.isEmpty(quantityString)) {
-            quantity = Integer.parseInt(quantityString);
-        }
-        contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_QUANTITY,
-                quantity);
-        contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_NAME,
-                supplierNameString);
-        contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_PHONE_NUMBER,
-                supplierPhoneString);
-
-        //If this does not have a current product URI, this will count as a new entry.
-        if (mCurrentProductUri == null) {
-            //New product
-            Uri newUri = getContentResolver().insert(CONTENT_URI, contentValues);
-            //If the product insertion was successful, this Toast message will appear:
-            if (!(newUri == null)) {
-                Toast.makeText(this, getString(R.string.editor_successful_insertion), Toast.LENGTH_SHORT).show();
-            } //Otherwise, this failure message will appear instead:
-            else {
-                Toast.makeText(this, getString(R.string.editor_unsuccessful_insertion), Toast.LENGTH_SHORT).show();
-            }
+        if (TextUtils.isEmpty(productNameString)
+                || TextUtils.isEmpty(priceString)
+                || TextUtils.isEmpty(quantityString)
+                || TextUtils.isEmpty(supplierNameString)
+                || TextUtils.isEmpty(supplierPhoneString)) {
+            Toast.makeText(this, R.string.product_entry_not_saved, Toast.LENGTH_SHORT).show();
+            return;
         } else {
-            //Existing records
+            ContentValues contentValues = new ContentValues();
 
-            int rowsAffected = getContentResolver().update(mCurrentProductUri, contentValues, null, null);
+            contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_NAME,
+                    productNameString);
+            //Price will default as 0.25.
+            Double price = 0.25;
+            if (!TextUtils.isEmpty(priceString)) {
+                price = Double.parseDouble(priceString);
+            }
+            contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_PRICE,
+                    price);
+            //Quantity will default as 0.
+            int quantity = 0;
+            if (!TextUtils.isEmpty(quantityString)) {
+                quantity = Integer.parseInt(quantityString);
+            }
+            contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_PRODUCT_QUANTITY,
+                    quantity);
+            contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_NAME,
+                    supplierNameString);
+            contentValues.put(BookstoreContract.BookstoreCatalogEntry.COL_SUPPLIER_PHONE_NUMBER,
+                    supplierPhoneString);
 
-            //If the product edit to an existing record was successful, this Toast message will appear:
-            if (rowsAffected != 0) {
-                Toast.makeText(this, getString(R.string.editor_successful_insertion), Toast.LENGTH_SHORT).show();
-            } //Otherwise, this failure message will appear instead:
-            else {
-                Toast.makeText(this, getString(R.string.editor_unsuccessful_insertion), Toast.LENGTH_SHORT).show();
+            //If this does not have a current product URI, this will count as a new entry.
+            if (mCurrentProductUri == null) {
+                //New product
+                Uri newUri = getContentResolver().insert(CONTENT_URI, contentValues);
+                //If the product insertion was successful, this Toast message will appear:
+                if (!(newUri == null)) {
+                    Toast.makeText(this, getString(R.string.editor_successful_insertion), Toast.LENGTH_SHORT).show();
+                } //Otherwise, this failure message will appear instead:
+                else {
+                    Toast.makeText(this, getString(R.string.editor_unsuccessful_insertion), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                //Existing records
+
+                int rowsAffected = getContentResolver().update(mCurrentProductUri, contentValues, null, null);
+
+                //If the product edit to an existing record was successful, this Toast message will appear:
+                if (rowsAffected != 0) {
+                    Toast.makeText(this, getString(R.string.editor_successful_insertion), Toast.LENGTH_SHORT).show();
+                } //Otherwise, this failure message will appear instead:
+                else {
+                    Toast.makeText(this, getString(R.string.editor_unsuccessful_insertion), Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -302,7 +313,7 @@ public class BookEditor extends AppCompatActivity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.unsaved_changes_prompt);
         builder.setPositiveButton(R.string.discard_yes, discardClickListener);
-        builder.setNegativeButton(R.string.discard_yes, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.discard_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (!(dialogInterface == null)) {

@@ -18,6 +18,12 @@ import java.text.NumberFormat;
 
 public class BookstoreCursorAdapter extends CursorAdapter {
 
+    static class ViewHolder{
+        TextView productNameTextView;
+        TextView productQuantityTextView;
+        TextView priceTextView;
+    }
+
     public BookstoreCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
@@ -29,9 +35,11 @@ public class BookstoreCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
-        TextView productNameTextView = (TextView) view.findViewById(R.id.item_name);
-        TextView productQuantityTextView = (TextView) view.findViewById(R.id.item_quantity);
-        TextView priceTextView = (TextView) view.findViewById(R.id.item_price);
+        ViewHolder viewHolder = new ViewHolder();
+
+        viewHolder.productNameTextView = view.findViewById(R.id.item_name);
+        viewHolder.productQuantityTextView = view.findViewById(R.id.item_quantity);
+        viewHolder.priceTextView = view.findViewById(R.id.item_price);
         View saleButton = view.findViewById(R.id.sale_button);
 
         int idColIndex = cursor.getColumnIndex(BookstoreContract.BookstoreCatalogEntry._ID);
@@ -45,9 +53,9 @@ public class BookstoreCursorAdapter extends CursorAdapter {
         final String quantityText = String.valueOf(cursor.getInt(quantityColIndex));
         final int productID = cursor.getInt(idColIndex);
 
-        productNameTextView.setText(productName);
-        productQuantityTextView.setText(quantityText);
-        priceTextView.setText(productPrice);
+        viewHolder.productNameTextView.setText(productName);
+        viewHolder.productQuantityTextView.setText(quantityText);
+        viewHolder.priceTextView.setText(productPrice);
 
         //Subtracts one from the quantity.
         saleButton.setOnClickListener(new View.OnClickListener() {
